@@ -7,8 +7,8 @@ export default class Product extends Model {
   name!: string
   description!: string
   price: number
-  attributes: object
-  favorites: User[]
+  main_img: string
+  sale: number
   category_id: number
 
   // Table name is the only required property.
@@ -25,9 +25,11 @@ export default class Product extends Model {
       id: { type: 'integer' },
       name: { type: 'string', minLength: 1, maxLength: 255 },
       description: { type: 'string', minLength: 1, maxLength: 1000 },
-      price: { type: 'float', minLength: 1, maxLength: 255 },
+      price: { type: 'number' },
+      main_img: { type: 'string', minLength: 1, maxLength: 1000 },
+      sale: { type: 'number' },
       category_id: { type: 'integer' },
-      attributes: { type: 'json' }
+      // attributes: { type: 'json' }
     },
   }
 
@@ -45,7 +47,7 @@ export default class Product extends Model {
 
   static get relationMappings() {
     return {
-      attribute: {
+      attributes: {
         relation: Model.ManyToManyRelation,
         modelClass: require('./Attributes').default,
         join: {
@@ -64,7 +66,27 @@ export default class Product extends Model {
           from: 'product.category_id',
           to: 'categories.id'
         }
-      }
+      },
+      images: {
+        relation: Model.HasManyRelation,
+        modelClass: require('./ProductImage').default,
+        join: {
+          from: 'products.id',
+          to: 'product_images.productId',
+        },
+      },
     }
   }
 }
+//   async function getAttributesForProductsByName(productName) {
+//     const attributes = await Product.query()
+//       .where('name', 'like', `%${productName}%`)
+//       .withGraphFetched('attributes')
+//       .distinct('attributes.id', 'attributes.name', 'attributes.value');
+  
+//     return attributes;
+//   }
+// }
+
+
+

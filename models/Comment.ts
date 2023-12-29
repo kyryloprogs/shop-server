@@ -13,13 +13,15 @@ export default class Comment extends Model {
 
     static jsonSchema = {
         type: 'object',
-        required: ['user_id', 'product_id', 'like'],
+        required: ['user_id', 'product_id', 'comment'],
 
         properties: {
             id: { type: 'integer' },
             user_id: { type: 'integer' },
             product_id: { type: 'integer' },
             comment: { type: 'string', minLength: 1, maxLength: 3000 },
+            like: { type: 'boolean' },
+            created_at: { type: 'string' }
         },
     }
 

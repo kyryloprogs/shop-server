@@ -9,6 +9,9 @@ export default class User extends Model {
   password!: string
   role_id: number
   favorites?: Product[]
+  avatar: string
+  get_updates: boolean
+  phone: string
 
   // Table name is the only required property.
   static tableName = 'users'
@@ -26,7 +29,7 @@ export default class User extends Model {
   // is created it is checked against this schema. http://json-schema.org/.
   static jsonSchema = {
     type: 'object',
-    required: ['first_name', 'last_name', 'email', 'password'],
+    required: ['first_name', 'last_name', 'email', 'password', 'get_updates'],
 
     properties: {
       id: { type: 'integer' },
@@ -34,6 +37,8 @@ export default class User extends Model {
       last_name: { type: 'string', minLength: 1, maxLength: 255 },
       email: { type: 'string', minLength: 3, maxLength: 255 },
       password: { type: 'string', minLength: 3, maxLength: 255 },
+      get_updates: { type: 'boolean' },
+      avatar: { type: 'string' },
       role_id: { type: 'integer' }
     },
   }

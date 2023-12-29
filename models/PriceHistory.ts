@@ -6,7 +6,7 @@ export default class PriceHistory extends Model {
   sale!: number
   price!: number  
   clear_price!: number
-  regDate!: number
+  regDate: number
 
   // Table name is the only required property.
   static tableName = 'price_history'
@@ -18,10 +18,9 @@ export default class PriceHistory extends Model {
     properties: {
       id: { type: 'integer' },
       product_id: { type: 'integer'},
-      sale: { type: 'float'},
-      price: { type: 'float'},      
-      clear_price: { type: 'float'},
-      regDate: { type: 'date'},
+      sale: { type: 'number'},
+      price: { type: 'number'},      
+      clear_price: { type: 'number'},
     },
   }
 }

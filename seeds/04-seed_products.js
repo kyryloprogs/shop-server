@@ -10,7 +10,9 @@ const generateRandomRecord = () => ({
     name: faker.commerce.productName(),
     description: faker.lorem.paragraph(),
     price: parseFloat(faker.commerce.price()),
-    category_id: 1,
+    
+    category_id: Math.floor(Math.random() * 3) + 1,
+    subcategory_id: Math.floor(Math.random() * 3) + 1,
     main_img: getRandomImageLink()
     // subcategory: 1
 });

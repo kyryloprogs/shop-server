@@ -13,9 +13,10 @@ exports.up = function(knex) {
         table.string("name", 300).notNullable();
         table.string("description", 3000).notNullable();
         table.float("price", 10, 2).unsigned();
-        table.integer('sale', 3);
+        table.integer('sale', 3).defaultTo(0);
         table.string("main_img");
         table.integer('category_id').unsigned().references('id').inTable('categories').onDelete('SET NULL');
+        table.integer('subcategory_id').unsigned().references('id').inTable('subcategories').onDelete('SET NULL');
         // table.integer('subcaterory_id').unsigned().references('id').inTable('subcategories').onDelete('SET NULL');
       })
 };

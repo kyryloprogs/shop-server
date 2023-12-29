@@ -5,8 +5,8 @@
 exports.up = function(knex) {
     return knex.schema.createTable('search_base', function(table){
         table.increments("id").primary();
-        table.string("text", 500).notNullable();
-        table.integer('count')
+        table.string("text", 500).notNullable().unique();
+        table.integer('count').defaultTo(0);
     });
 };
 

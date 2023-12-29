@@ -1,4 +1,10 @@
 const faker = require("faker");
+const crypto = require('crypto');
+
+const hashPassword = (password) => {
+    const salt = process.env.SALT || "";
+    return crypto.pbkdf2Sync(password, salt, 100, 64, `sha256`).toString(`hex`);
+};
 
 function generateRandomUser() {
   const user = faker.helpers.contextualCard();
@@ -6,11 +12,13 @@ function generateRandomUser() {
       // username: user.username,
       // password is required. so we need to throw any value to avoid errors.
       // in real world scenario we will hash the password 
-      password: "1234",
+      password: hashPassword("1234"),
+      role_id: 1,
       email: user.email,
       first_name: user.name,
       last_name: user.name,
       avatar: user.avatar,
+    //   phone: "1235678990"
 
   };
 }

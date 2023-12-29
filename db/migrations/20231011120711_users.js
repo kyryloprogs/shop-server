@@ -10,7 +10,9 @@ exports.up = function(knex) {
     table.string("email", 255).notNullable();
     table.string("password", 255);
     table.string("avatar");
-    table.integer("role_id").unsigned();
+    table.string("phone", 30);
+    table.boolean("get_updates").defaultTo(false);
+    table.integer("role_id").unsigned().defaultTo(1);
     table.foreign("role_id").references("roles.id");
     table.timestamps(false, true);
   })

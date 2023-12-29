@@ -1,6 +1,11 @@
 import { Model } from 'objection';
 
 export default class ProductAttributes extends Model {
+
+  attributeID: number;
+  productID: number;
+  isMain: boolean;
+  
   static get tableName() {
     return 'product_attributes';
   }
